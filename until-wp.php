@@ -195,7 +195,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 //Set the branch that contains the stable release.
 $myUpdateChecker->setBranch('main');
 
-$MyUpdateChecker->addResultFilter( function( $info, $response = null ) {
+$myUpdateChecker->addResultFilter( function( $info, $response = null ) {
     $info->icons = array(
         '1x' => plugin_dir_url(__FILE__) . 'img/icon-128x128.png',
         '2x' => plugin_dir_url(__FILE__) . 'img/icon-256x256.png',
