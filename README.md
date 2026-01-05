@@ -1,6 +1,6 @@
 # Until WP - Programar Canvis en Posts de WordPress
 
-**Version:** 1.0.0  
+**Version:** 1.0.0
 **Requereix:** WordPress 5.0+  
 **Requereix PHP:** 7.4+  
 **Llicència:** GPL v2 or later

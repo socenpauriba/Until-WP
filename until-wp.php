@@ -4,8 +4,8 @@
  * Plugin URI: https://github.com/socenpauriba/until-wp
  * Description: Programa canvis automàtics en posts de WordPress (estat, entrades fixades, etc.)
  * Version: 1.0.0
- * Author: Until WP Team
- * Author URI: https://github.com/socenpauriba
+ * Author: Nuvol.cat
+ * Author URI: https://nuvol.cat
  * Text Domain: until-wp
  * Domain Path: /languages
  * Requires at least: 5.0
@@ -183,7 +183,7 @@ function until_wp_add_cron_interval( $schedules ) {
 }
 
 
-require 'plugin-update-checker/plugin-update-checker.php';
+require 'update/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
@@ -194,6 +194,24 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 
 //Set the branch that contains the stable release.
 $myUpdateChecker->setBranch('main');
+
+$MyUpdateChecker->addResultFilter( function( $info, $response = null ) {
+    $info->icons = array(
+        '1x' => plugin_dir_url(__FILE__) . 'img/icon-128x128.png',
+        '2x' => plugin_dir_url(__FILE__) . 'img/icon-256x256.png',
+    );
+	$description_path = plugin_dir_path(__FILE__) . 'description.html';
+    if (file_exists($description_path)) {
+        $info->sections = array(
+            'description' => file_get_contents($description_path),
+        );
+    } else {
+        $info->sections = array(
+            'description' => 'Descripció no disponible.',
+        );
+    }
+    return $info;
+});
 
 /**
  * Inicialitzar el plugin
