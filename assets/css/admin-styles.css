@@ -1,0 +1,368 @@
+/**
+ * Estils d'administració per Until WP
+ */
+
+/* Meta Box */
+.until-wp-metabox {
+	font-size: 13px;
+}
+
+.until-wp-schedule-form {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.until-wp-schedule-form h4 {
+	margin-top: 0;
+	margin-bottom: 12px;
+	font-size: 14px;
+}
+
+.until-wp-schedule-form label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.until-wp-schedule-form select,
+.until-wp-schedule-form input[type="number"],
+.until-wp-schedule-form input[type="datetime-local"] {
+	width: 100%;
+	margin-top: 5px;
+}
+
+/* Tabs */
+.until-wp-time-tabs {
+	margin: 15px 0;
+}
+
+.until-wp-tab-buttons {
+	display: flex;
+	gap: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.until-wp-tab-btn {
+	flex: 1;
+	padding: 8px 12px;
+	background: #f0f0f1;
+	border: none;
+	border-bottom: 2px solid transparent;
+	cursor: pointer;
+	font-size: 13px;
+	transition: all 0.2s;
+}
+
+.until-wp-tab-btn:hover {
+	background: #e8e8e9;
+}
+
+.until-wp-tab-btn.active {
+	background: #fff;
+	border-bottom-color: #2271b1;
+	color: #2271b1;
+	font-weight: 600;
+}
+
+.until-wp-tab-content {
+	display: none;
+	padding: 10px 0;
+}
+
+.until-wp-tab-content.active {
+	display: block;
+}
+
+/* Llista de canvis programats */
+.until-wp-scheduled-list {
+	margin-top: 20px;
+}
+
+.until-wp-scheduled-list h4 {
+	margin-top: 0;
+	margin-bottom: 12px;
+	font-size: 14px;
+}
+
+.until-wp-scheduled-list ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.until-wp-scheduled-list li {
+	margin-bottom: 10px;
+	padding: 10px;
+	background: #f6f7f7;
+	border-left: 3px solid #2271b1;
+	border-radius: 3px;
+}
+
+.until-wp-change-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.until-wp-change-info {
+	flex: 1;
+}
+
+.until-wp-change-info strong {
+	display: block;
+	margin-bottom: 4px;
+	color: #1d2327;
+}
+
+.until-wp-change-time {
+	font-size: 12px;
+	color: #646970;
+}
+
+.until-wp-change-actions {
+	flex-shrink: 0;
+}
+
+/* Missatges */
+.until-wp-message {
+	margin: 10px 0;
+	padding: 8px 12px;
+	border-radius: 3px;
+	font-size: 13px;
+}
+
+.until-wp-message.success {
+	background: #d7f0d7;
+	border-left: 4px solid #00a32a;
+	color: #007017;
+}
+
+.until-wp-message.error {
+	background: #fcebeb;
+	border-left: 4px solid #d63638;
+	color: #a00;
+}
+
+.until-wp-message.info {
+	background: #e5f5fa;
+	border-left: 4px solid #00a0d2;
+	color: #006ba1;
+}
+
+/* Spinner */
+.until-wp-spinner {
+	text-align: center;
+	padding: 20px;
+}
+
+/* No hi ha canvis */
+.until-wp-no-changes {
+	color: #646970;
+	font-style: italic;
+	margin: 15px 0;
+}
+
+/* Pàgina d'administració */
+.until-wp-admin-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.until-wp-admin-stats {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.until-wp-stat-box {
+	flex: 1;
+	padding: 15px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.until-wp-stat-box .stat-number {
+	display: block;
+	font-size: 32px;
+	font-weight: 600;
+	color: #2271b1;
+	margin-bottom: 5px;
+}
+
+.until-wp-stat-box .stat-label {
+	display: block;
+	font-size: 13px;
+	color: #646970;
+}
+
+/* Taula personalitzada */
+.wp-list-table .until-wp-change-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Badge de comptador */
+.until-wp-badge {
+	display: inline-block;
+	padding: 2px 6px;
+	background: #d63638;
+	color: #fff;
+	border-radius: 10px;
+	font-size: 11px;
+	font-weight: 600;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+/* Dashboard Widget */
+.until-wp-dashboard-widget .dashicons {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.until-wp-widget-section ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.until-wp-widget-section li {
+	padding: 8px 0;
+}
+
+.until-wp-widget-section li:last-child {
+	border-bottom: none;
+}
+
+/* Notificacions */
+.until-wp-notification {
+	position: relative;
+}
+
+.until-wp-notification p {
+	margin: 0.5em 0;
+}
+
+.until-wp-notification .button {
+	margin-left: 10px;
+}
+
+/* Columna a la llista de posts */
+.column-until_wp_scheduled {
+	width: 150px;
+}
+
+.until-wp-column-changes {
+	font-size: 12px;
+}
+
+.until-wp-column-changes .until-wp-change-item {
+	display: block;
+	padding: 4px 0;
+}
+
+.until-wp-column-changes .dashicons {
+	color: #2271b1;
+	vertical-align: middle;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+	.until-wp-change-item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	
+	.until-wp-admin-stats {
+		flex-direction: column;
+	}
+	
+	.until-wp-tab-buttons {
+		flex-direction: column;
+	}
+	
+	.until-wp-tab-btn {
+		border-bottom: 1px solid #ddd;
+	}
+	
+	.until-wp-tab-btn.active {
+		border-left: 3px solid #2271b1;
+	}
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+	.until-wp-scheduled-list li {
+		background: #1e1e1e;
+		border-left-color: #4aa0d5;
+	}
+	
+	.until-wp-change-info strong {
+		color: #f0f0f1;
+	}
+	
+	.until-wp-change-time {
+		color: #b5bcc2;
+	}
+	
+	.until-wp-stat-box {
+		background: #1e1e1e;
+		border-color: #3c434a;
+	}
+	
+	.until-wp-stat-box .stat-number {
+		color: #4aa0d5;
+	}
+	
+	.until-wp-tab-btn {
+		background: #1e1e1e;
+		color: #f0f0f1;
+	}
+	
+	.until-wp-tab-btn:hover {
+		background: #2c2c2c;
+	}
+	
+	.until-wp-tab-btn.active {
+		background: #2c2c2c;
+		border-bottom-color: #4aa0d5;
+		color: #4aa0d5;
+	}
+}
+
+/* Animacions */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.until-wp-message {
+	animation: fadeIn 0.3s ease-out;
+}
+
+.until-wp-scheduled-list li {
+	animation: fadeIn 0.3s ease-out;
+}
+
+/* Estils per a la imprressió */
+@media print {
+	.until-wp-change-actions,
+	.until-wp-schedule-form,
+	.until-wp-tab-buttons {
+		display: none;
+	}
+}
+

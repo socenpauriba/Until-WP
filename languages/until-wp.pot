@@ -1,0 +1,318 @@
+# Copyright (C) 2026 Until WP Team
+# This file is distributed under the same license as the Until WP plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Until WP 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/socenpauriba/until-wp/issues\n"
+"POT-Creation-Date: 2026-01-05 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: until-wp.php
+msgid "Cada minut"
+msgstr ""
+
+#: includes/class-until-wp-metabox.php
+msgid "Programar Canvis"
+msgstr ""
+
+msgid "Afegir Nou Canvi"
+msgstr ""
+
+msgid "Tipus de canvi:"
+msgstr ""
+
+msgid "Selecciona..."
+msgstr ""
+
+msgid "Estat"
+msgstr ""
+
+msgid "Canviar a Publicat"
+msgstr ""
+
+msgid "Canviar a Esborrany"
+msgstr ""
+
+msgid "Canviar a Pendent de revisió"
+msgstr ""
+
+msgid "Canviar a Privat"
+msgstr ""
+
+msgid "Destacat"
+msgstr ""
+
+msgid "Fixar entrada"
+msgstr ""
+
+msgid "Desfixar entrada"
+msgstr ""
+
+msgid "Relatiu"
+msgstr ""
+
+msgid "Absolut"
+msgstr ""
+
+msgid "D'aquí a:"
+msgstr ""
+
+msgid "Minuts"
+msgstr ""
+
+msgid "Hores"
+msgstr ""
+
+msgid "Dies"
+msgstr ""
+
+msgid "Setmanes"
+msgstr ""
+
+msgid "Data i hora:"
+msgstr ""
+
+msgid "Programar Canvi"
+msgstr ""
+
+msgid "Canvis Programats"
+msgstr ""
+
+msgid "Cancel·lar"
+msgstr ""
+
+msgid "Post eliminat"
+msgstr ""
+
+msgid "No hi ha canvis programats per aquest post."
+msgstr ""
+
+msgid "No tens permisos per fer això."
+msgstr ""
+
+msgid "Tipus de canvi invàlid."
+msgstr ""
+
+msgid "Canvi programat correctament!"
+msgstr ""
+
+msgid "Error al programar el canvi."
+msgstr ""
+
+msgid "ID de canvi invàlid."
+msgstr ""
+
+msgid "Canvi cancel·lat correctament!"
+msgstr ""
+
+msgid "Error al cancel·lar el canvi."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Èxit"
+msgstr ""
+
+msgid "Estàs segur que vols cancel·lar aquest canvi programat?"
+msgstr ""
+
+msgid "Si us plau, selecciona un tipus de canvi."
+msgstr ""
+
+msgid "La quantitat ha de ser un número positiu."
+msgstr ""
+
+msgid "Si us plau, selecciona una data i hora vàlides."
+msgstr ""
+
+#: includes/class-until-wp-admin.php
+msgid "Canvis Programats"
+msgstr ""
+
+msgid "No tens permisos per accedir a aquesta pàgina."
+msgstr ""
+
+msgid "Programats"
+msgstr ""
+
+msgid "Historial"
+msgstr ""
+
+msgid "Tots els tipus"
+msgstr ""
+
+msgid "Canvi d'estat"
+msgstr ""
+
+msgid "Fixar/Desfixar"
+msgstr ""
+
+msgid "Filtrar"
+msgstr ""
+
+msgid "Esborrar filtres"
+msgstr ""
+
+msgid "Post"
+msgstr ""
+
+msgid "Tipus de canvi"
+msgstr ""
+
+msgid "Nou valor"
+msgstr ""
+
+msgid "Programat per"
+msgstr ""
+
+msgid "Quan"
+msgstr ""
+
+msgid "Accions"
+msgstr ""
+
+msgid "Desconegut"
+msgstr ""
+
+msgid "Cancel·lar seleccionats"
+msgstr ""
+
+msgid "No hi ha canvis programats."
+msgstr ""
+
+msgid "Canvi aplicat"
+msgstr ""
+
+msgid "Valor antic"
+msgstr ""
+
+msgid "Programat"
+msgstr ""
+
+msgid "Executat"
+msgstr ""
+
+msgid "Per qui"
+msgstr ""
+
+msgid "No hi ha historial de canvis."
+msgstr ""
+
+msgid "Fixat"
+msgstr ""
+
+msgid "No fixat"
+msgstr ""
+
+msgid "Fa %s"
+msgstr ""
+
+msgid "D'aquí a %s"
+msgstr ""
+
+msgid "No s'ha seleccionat cap canvi."
+msgstr ""
+
+#: includes/class-until-wp-scheduler.php
+msgid "Paperera"
+msgstr ""
+
+msgid "Canviar \"%1$s\" a %2$s"
+msgstr ""
+
+msgid "%1$s \"%2$s\""
+msgstr ""
+
+msgid "fixar"
+msgstr ""
+
+msgid "desfixar"
+msgstr ""
+
+msgid "Canvi desconegut"
+msgstr ""
+
+#: includes/class-until-wp-notifications.php
+msgid "Until WP:"
+msgstr ""
+
+msgid "Veure post"
+msgstr ""
+
+msgid "Hi ha %d notificació més."
+msgid_plural "Hi ha %d notificacions més."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Veure historial"
+msgstr ""
+
+msgid "Descartar tot"
+msgstr ""
+
+msgid "S'ha canviat l'estat de \"%1$s\" de %2$s a %3$s."
+msgstr ""
+
+msgid "S'ha fixat l'entrada \"%s\"."
+msgstr ""
+
+msgid "S'ha desfixat l'entrada \"%s\"."
+msgstr ""
+
+msgid "S'ha executat un canvi programat."
+msgstr ""
+
+#: includes/class-until-wp-history.php
+msgid "Publicar"
+msgstr ""
+
+msgid "Esborrany"
+msgstr ""
+
+msgid "Pendent"
+msgstr ""
+
+msgid "Privat"
+msgstr ""
+
+msgid "Fixar"
+msgstr ""
+
+msgid "Desfixar"
+msgstr ""
+
+msgid "Canvi"
+msgstr ""
+
+msgid "Canvis Programats - Until WP"
+msgstr ""
+
+msgid "Propers Canvis"
+msgstr ""
+
+msgid "Veure tots (%d)"
+msgstr ""
+
+msgid "Executats Recentment"
+msgstr ""
+
+msgid "Canviar a %s"
+msgstr ""
+
+msgid "%s → %s"
+msgstr ""
+
+msgid "Canvi executat"
+msgstr ""
+
+msgid "+ %d més"
+msgstr ""
+
