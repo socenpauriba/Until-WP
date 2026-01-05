@@ -1,6 +1,6 @@
 # Until WP - Programar Canvis en Posts de WordPress
 
-**Version:** 0.0.1  
+**Version:** 1.0.0  
 **Requereix:** WordPress 5.0+  
 **Requereix PHP:** 7.4+  
 **Llicència:** GPL v2 or later
@@ -59,48 +59,6 @@ Al dashboard de WordPress, trobaràs un widget que mostra:
 - Els propers 5 canvis programats
 - Els últims 5 canvis executats
 
-## Exemples d'Ús
-
-### Exemple 1: Despublicar un post després de 24 hores
-1. Obre el post publicat
-2. Al meta box "Programar Canvis", selecciona "Canviar a Esborrany"
-3. A la pestanya "Relatiu", introdueix: 24 hores
-4. Fes clic a "Programar Canvi"
-
-### Exemple 2: Fixar un post en una data específica
-1. Obre el post
-2. Selecciona "Fixar entrada"
-3. A la pestanya "Absolut", selecciona la data i hora desitjades
-4. Fes clic a "Programar Canvi"
-
-### Exemple 3: Publicar automàticament d'aquí a 2 dies
-1. Crea un post i desa'l com a esborrany
-2. Selecciona "Canviar a Publicat"
-3. Introdueix: 2 dies
-4. Programa el canvi
-
-## Funcionament Tècnic
-
-### WP-Cron
-El plugin utilitza WP-Cron per comprovar cada minut si hi ha canvis programats que s'han d'executar. Quan un canvi arriba al seu temps programat, s'aplica automàticament.
-
-### Base de Dades
-El plugin crea dues taules personalitzades:
-- `wp_until_wp_scheduled`: Emmagatzema els canvis programats pendents
-- `wp_until_wp_history`: Emmagatzema l'historial de canvis executats
-
-### Neteja Automàtica
-- Les notificacions es netegen automàticament després de 30 dies
-- L'historial es neteja automàticament després de 90 dies
-
-## Seguretat
-
-- Tots els formularis utilitzen nonces per prevenir atacs CSRF
-- Totes les entrades es sanititzen i validen
-- Els permisos es comproven en cada acció:
-  - `edit_posts`: Necessari per programar canvis
-  - `manage_options`: Necessari per veure tots els canvis (administradors)
-
 ## Compatibilitat
 
 - **WordPress**: 5.0 o superior
@@ -141,16 +99,6 @@ El plugin proporciona hooks per a desenvolupadors:
 do_action( 'until_wp_change_executed', $change, $old_value );
 ```
 
-## Desinstal·lació
-
-Quan desinstal·les el plugin:
-1. S'eliminen totes les taules de base de dades
-2. Es netegen totes les opcions
-3. Es cancel·len tots els eventos de WP-Cron
-4. S'eliminen totes les metadades relacionades
-
-**Nota**: La desinstal·lació és irreversible. Totes les dades es perdran.
-
 ## Contribuir
 
 Les contribucions són benvingudes! Si vols contribuir:
@@ -176,10 +124,6 @@ Per informar d'errors o sol·licitar funcionalitats:
 - Sistema de notificacions
 - Widget al dashboard
 - Internacionalització completa
-
-## Crèdits
-
-Desenvolupat per Until WP Team
 
 ## Llicència
 
