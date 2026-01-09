@@ -2,6 +2,21 @@
 
 Tots els canvis notables d'aquest projecte es documentaran en aquest fitxer.
 
+## [1.1.1] - 2026-01-09
+
+### 🐛 Correccions
+
+- **Renderització HTML**: Corregit problema on els tags `<code>` i `<small>` es mostraven com a text pla a la pàgina d'administració de canvis programats
+- **Timezone absolut**: Corregit error de timezone en dates absolutes que feia que els canvis es programessin 1 hora més tard del previst
+- **Timezone relatiu**: Corregit error de timezone en dates relatives que feia que els canvis es programessin 1 hora més tard del previst
+
+### 🔧 Millores Tècniques
+
+- **Seguretat HTML**: Canviat `esc_html()` per `wp_kses_post()` per permetre tags HTML segurs a la visualització de valors
+- **Gestió de dates**: Utilitzat `DateTime` amb `wp_timezone()` per garantir la correcta conversió de dates en el timezone de WordPress
+- **Dates absolutes**: Corregida la conversió de `datetime-local` per respectar el timezone del lloc web
+- **Dates relatives**: Corregida la generació de MySQL datetime per respectar el timezone del lloc web
+
 ## [1.1.0] - 2026-01-05
 
 ### ✨ Nova Funcionalitat

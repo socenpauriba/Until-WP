@@ -383,12 +383,20 @@ class Until_WP_Metabox {
 			// Convertir datetime-local a MySQL datetime
 			if ( $datetime ) {
 				// El datetime-local ve en format: 2026-01-05T15:30
-				// Necessitem convertir-lo al timezone de WordPress
-				$timestamp = strtotime( $datetime );
-				if ( $timestamp ) {
-					// Utilitzar el format de data de WordPress
+				// L'usuari introdueix la data en el seu timezone local
+				// Hem de convertir-ho a MySQL datetime tenint en compte el timezone de WordPress
+				
+				// Reemplaçar T per espai per tenir format estàndard
+				$datetime_formatted = str_replace( 'T', ' ', $datetime );
+				
+				// Crear DateTime object en el timezone de WordPress
+				$wp_timezone = wp_timezone();
+				$date_obj = date_create( $datetime_formatted, $wp_timezone );
+				
+				if ( $date_obj ) {
+					// Convertir a MySQL datetime en el timezone de WordPress
 					$time_data = array(
-						'datetime' => date( 'Y-m-d H:i:s', $timestamp )
+						'datetime' => $date_obj->format( 'Y-m-d H:i:s' )
 					);
 				} else {
 					wp_send_json_error( array( 'message' => __( 'Format de data invàlid.', 'until-wp' ) ) );

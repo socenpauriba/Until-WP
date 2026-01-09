@@ -232,9 +232,9 @@ class Until_WP_Admin {
 								<td>
 									<?php echo esc_html( $this->get_change_type_label( $change->change_type ) ); ?>
 								</td>
-								<td>
-									<?php echo esc_html( $this->get_change_value_label( $change->change_type, $change->new_value ) ); ?>
-								</td>
+							<td>
+								<?php echo wp_kses_post( $this->get_change_value_label( $change->change_type, $change->new_value ) ); ?>
+							</td>
 								<td>
 									<?php
 									$user = get_userdata( $change->created_by );
@@ -400,12 +400,12 @@ class Until_WP_Admin {
 							<td>
 								<?php echo esc_html( $this->get_change_type_label( $item->change_type ) ); ?>
 							</td>
-							<td>
-								<?php echo esc_html( $this->get_change_value_label( $item->change_type, $item->old_value ) ); ?>
-							</td>
-							<td>
-								<?php echo esc_html( $this->get_change_value_label( $item->change_type, $item->new_value ) ); ?>
-							</td>
+						<td>
+							<?php echo wp_kses_post( $this->get_change_value_label( $item->change_type, $item->old_value ) ); ?>
+						</td>
+						<td>
+							<?php echo wp_kses_post( $this->get_change_value_label( $item->change_type, $item->new_value ) ); ?>
+						</td>
 							<td>
 								<?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $item->scheduled_time ) ) ); ?>
 							</td>

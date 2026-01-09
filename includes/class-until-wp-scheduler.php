@@ -373,7 +373,12 @@ class Until_WP_Scheduler {
 		$scheduled_timestamp = $current_timestamp + $seconds;
 		
 		// Convertir a format MySQL utilitzant el timezone de WordPress
-		return date( 'Y-m-d H:i:s', $scheduled_timestamp );
+		// Utilitzem DateTime per respectar el timezone de WordPress
+		$wp_timezone = wp_timezone();
+		$date_obj = new DateTime( '@' . $scheduled_timestamp );
+		$date_obj->setTimezone( $wp_timezone );
+		
+		return $date_obj->format( 'Y-m-d H:i:s' );
 	}
 	
 	/**
