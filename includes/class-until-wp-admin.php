@@ -174,6 +174,9 @@ class Until_WP_Admin {
 						<option value="sticky" <?php selected( $filter_type, 'sticky' ); ?>>
 							<?php _e( 'Fixar/Desfixar', 'until-wp' ); ?>
 						</option>
+						<option value="custom_function" <?php selected( $filter_type, 'custom_function' ); ?>>
+							<?php _e( 'Funció personalitzada', 'until-wp' ); ?>
+						</option>
 					</select>
 					
 					<input type="submit" class="button" value="<?php esc_attr_e( 'Filtrar', 'until-wp' ); ?>">
@@ -348,6 +351,9 @@ class Until_WP_Admin {
 						<option value="sticky" <?php selected( $filter_type, 'sticky' ); ?>>
 							<?php _e( 'Fixar/Desfixar', 'until-wp' ); ?>
 						</option>
+						<option value="custom_function" <?php selected( $filter_type, 'custom_function' ); ?>>
+							<?php _e( 'Funció personalitzada', 'until-wp' ); ?>
+						</option>
 					</select>
 					
 					<input type="submit" class="button" value="<?php esc_attr_e( 'Filtrar', 'until-wp' ); ?>">
@@ -461,7 +467,8 @@ class Until_WP_Admin {
 	private function get_change_type_label( $change_type ) {
 		$labels = array(
 			'post_status' => __( 'Canvi d\'estat', 'until-wp' ),
-			'sticky' => __( 'Fixar/Desfixar', 'until-wp' )
+			'sticky' => __( 'Fixar/Desfixar', 'until-wp' ),
+			'custom_function' => __( 'Funció personalitzada', 'until-wp' )
 		);
 		
 		return isset( $labels[ $change_type ] ) ? $labels[ $change_type ] : $change_type;
@@ -480,6 +487,8 @@ class Until_WP_Admin {
 			return isset( $statuses[ $value ] ) ? $statuses[ $value ] : $value;
 		} elseif ( $change_type === 'sticky' ) {
 			return ( $value === 'yes' ) ? __( 'Fixat', 'until-wp' ) : __( 'No fixat', 'until-wp' );
+		} elseif ( $change_type === 'custom_function' ) {
+			return '<code>' . esc_html( $value ) . '()</code>';
 		}
 		
 		return $value;
@@ -501,16 +510,80 @@ class Until_WP_Admin {
 			return sprintf(
 				/* translators: %s: Relative time */
 				__( 'Fa %s', 'until-wp' ),
-				human_time_diff( $timestamp, $now )
+				$this->format_time_diff( abs( $diff ) )
 			) . '<br><small>' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamp ) . '</small>';
 		} else {
 			// Encara no ha arribat
 			return sprintf(
 				/* translators: %s: Relative time */
 				__( "D'aquí a %s", 'until-wp' ),
-				human_time_diff( $now, $timestamp )
+				$this->format_time_diff( $diff )
 			) . '<br><small>' . date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamp ) . '</small>';
 		}
+	}
+	
+	/**
+	 * Formatar la diferència de temps amb més precisió
+	 *
+	 * @param int $seconds Diferència en segons
+	 * @return string Temps formatat
+	 */
+	private function format_time_diff( $seconds ) {
+		if ( $seconds < 60 ) {
+			return sprintf(
+				_n( '%s segon', '%s segons', $seconds, 'until-wp' ),
+				number_format_i18n( $seconds )
+			);
+		}
+		
+		if ( $seconds < 3600 ) {
+			$minutes = floor( $seconds / 60 );
+			return sprintf(
+				_n( '%s minut', '%s minuts', $minutes, 'until-wp' ),
+				number_format_i18n( $minutes )
+			);
+		}
+		
+		if ( $seconds < 86400 ) {
+			$hours = floor( $seconds / 3600 );
+			$minutes = floor( ( $seconds % 3600 ) / 60 );
+			
+			if ( $minutes > 0 ) {
+				return sprintf(
+					/* translators: 1: hours, 2: minutes */
+					__( '%1$s h %2$s min', 'until-wp' ),
+					number_format_i18n( $hours ),
+					number_format_i18n( $minutes )
+				);
+			}
+			
+			return sprintf(
+				_n( '%s hora', '%s hores', $hours, 'until-wp' ),
+				number_format_i18n( $hours )
+			);
+		}
+		
+		if ( $seconds < 604800 ) {
+			$days = floor( $seconds / 86400 );
+			$hours = floor( ( $seconds % 86400 ) / 3600 );
+			
+			if ( $hours > 0 ) {
+				return sprintf(
+					/* translators: 1: days, 2: hours */
+					__( '%1$s dies %2$s h', 'until-wp' ),
+					number_format_i18n( $days ),
+					number_format_i18n( $hours )
+				);
+			}
+			
+			return sprintf(
+				_n( '%s dia', '%s dies', $days, 'until-wp' ),
+				number_format_i18n( $days )
+			);
+		}
+		
+		// Per més d'una setmana, usar human_time_diff()
+		return human_time_diff( time(), time() + $seconds );
 	}
 	
 	/**

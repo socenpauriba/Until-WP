@@ -106,7 +106,22 @@ class Until_WP_Metabox {
 							<option value="sticky:yes"><?php _e( 'Fixar entrada', 'until-wp' ); ?></option>
 							<option value="sticky:no"><?php _e( 'Desfixar entrada', 'until-wp' ); ?></option>
 						</optgroup>
+						<optgroup label="<?php esc_attr_e( 'Avançat', 'until-wp' ); ?>">
+							<option value="custom_function:custom"><?php _e( 'Executar funció personalitzada', 'until-wp' ); ?></option>
+						</optgroup>
 					</select>
+				</p>
+				
+				<!-- Camp per funció personalitzada (ocult per defecte) -->
+				<p id="until-wp-custom-function-field" style="display: none;">
+					<label for="until-wp-custom-function-name">
+						<strong><?php _e( 'Nom de la funció:', 'until-wp' ); ?></strong>
+					</label>
+					<input type="text" id="until-wp-custom-function-name" class="widefat" placeholder="nom_de_la_funcio">
+					<small style="display: block; margin-top: 5px; color: #666;">
+						<?php _e( 'Exemple: processar_post_automaticament', 'until-wp' ); ?><br>
+						<?php _e( 'La funció rebrà el post_id com a paràmetre.', 'until-wp' ); ?>
+					</small>
 				</p>
 				
 				<!-- Tabs per temps relatiu/absolut -->
@@ -221,6 +236,9 @@ class Until_WP_Metabox {
 			case 'sticky':
 				return ( $change->new_value === 'yes' ) ? __( 'Fixar entrada', 'until-wp' ) : __( 'Desfixar entrada', 'until-wp' );
 				
+			case 'custom_function':
+				return sprintf( __( 'Executar %s()', 'until-wp' ), $change->new_value );
+				
 			default:
 				return __( 'Canvi desconegut', 'until-wp' );
 		}
@@ -245,8 +263,8 @@ class Until_WP_Metabox {
 			);
 		}
 		
-		// Mostrar temps relatiu
-		$relative = human_time_diff( $now, $timestamp );
+		// Mostrar temps relatiu amb més precisió
+		$relative = $this->format_time_diff( $diff );
 		
 		return sprintf(
 			/* translators: 1: Relative time, 2: Formatted date and time */
@@ -254,6 +272,70 @@ class Until_WP_Metabox {
 			$relative,
 			date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $timestamp )
 		);
+	}
+	
+	/**
+	 * Formatar la diferència de temps amb més precisió
+	 *
+	 * @param int $seconds Diferència en segons
+	 * @return string Temps formatat
+	 */
+	private function format_time_diff( $seconds ) {
+		if ( $seconds < 60 ) {
+			return sprintf(
+				_n( '%s segon', '%s segons', $seconds, 'until-wp' ),
+				number_format_i18n( $seconds )
+			);
+		}
+		
+		if ( $seconds < 3600 ) {
+			$minutes = floor( $seconds / 60 );
+			return sprintf(
+				_n( '%s minut', '%s minuts', $minutes, 'until-wp' ),
+				number_format_i18n( $minutes )
+			);
+		}
+		
+		if ( $seconds < 86400 ) {
+			$hours = floor( $seconds / 3600 );
+			$minutes = floor( ( $seconds % 3600 ) / 60 );
+			
+			if ( $minutes > 0 ) {
+				return sprintf(
+					/* translators: 1: hours, 2: minutes */
+					__( '%1$s h %2$s min', 'until-wp' ),
+					number_format_i18n( $hours ),
+					number_format_i18n( $minutes )
+				);
+			}
+			
+			return sprintf(
+				_n( '%s hora', '%s hores', $hours, 'until-wp' ),
+				number_format_i18n( $hours )
+			);
+		}
+		
+		if ( $seconds < 604800 ) {
+			$days = floor( $seconds / 86400 );
+			$hours = floor( ( $seconds % 86400 ) / 3600 );
+			
+			if ( $hours > 0 ) {
+				return sprintf(
+					/* translators: 1: days, 2: hours */
+					__( '%1$s dies %2$s h', 'until-wp' ),
+					number_format_i18n( $days ),
+					number_format_i18n( $hours )
+				);
+			}
+			
+			return sprintf(
+				_n( '%s dia', '%s dies', $days, 'until-wp' ),
+				number_format_i18n( $days )
+			);
+		}
+		
+		// Per més d'una setmana, usar human_time_diff()
+		return human_time_diff( time(), time() + $seconds );
 	}
 	
 	/**
@@ -415,7 +497,8 @@ class Until_WP_Metabox {
 					'confirm_cancel' => __( 'Estàs segur que vols cancel·lar aquest canvi programat?', 'until-wp' ),
 					'select_change_type' => __( 'Si us plau, selecciona un tipus de canvi.', 'until-wp' ),
 					'invalid_amount' => __( 'La quantitat ha de ser un número positiu.', 'until-wp' ),
-					'invalid_datetime' => __( 'Si us plau, selecciona una data i hora vàlides.', 'until-wp' )
+					'invalid_datetime' => __( 'Si us plau, selecciona una data i hora vàlides.', 'until-wp' ),
+					'enter_function_name' => __( 'Si us plau, introdueix el nom de la funció.', 'until-wp' )
 				)
 			)
 		);

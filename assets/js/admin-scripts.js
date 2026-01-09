@@ -38,23 +38,33 @@
 			});
 		},
 		
-		/**
-		 * Inicialitzar el meta box
-		 */
-		initMetabox: function() {
-			// Botó per programar canvi
-			$('#until-wp-add-change').on('click', function(e) {
-				e.preventDefault();
-				UntilWP.scheduleChange();
-			});
-			
-			// Botons per cancel·lar canvis
-			$('.until-wp-cancel-change').on('click', function(e) {
-				e.preventDefault();
-				var changeId = $(this).data('change-id');
-				UntilWP.cancelChange(changeId, $(this));
-			});
-		},
+	/**
+	 * Inicialitzar el meta box
+	 */
+	initMetabox: function() {
+		// Botó per programar canvi
+		$('#until-wp-add-change').on('click', function(e) {
+			e.preventDefault();
+			UntilWP.scheduleChange();
+		});
+		
+		// Botons per cancel·lar canvis
+		$('.until-wp-cancel-change').on('click', function(e) {
+			e.preventDefault();
+			var changeId = $(this).data('change-id');
+			UntilWP.cancelChange(changeId, $(this));
+		});
+		
+		// Mostrar/amagar camp de funció personalitzada
+		$('#until-wp-change-type').on('change', function() {
+			var value = $(this).val();
+			if (value && value.indexOf('custom_function:') === 0) {
+				$('#until-wp-custom-function-field').slideDown();
+			} else {
+				$('#until-wp-custom-function-field').slideUp();
+			}
+		});
+	},
 		
 		/**
 		 * Inicialitzar la pàgina d'administració
@@ -78,29 +88,40 @@
 			});
 		},
 		
-		/**
-		 * Programar un canvi
-		 */
-		scheduleChange: function() {
-			// Obtenir valors
-			var postId = $('#until-wp-post-id').val();
-			var changeTypeFull = $('#until-wp-change-type').val();
-			var activeTab = $('.until-wp-tab-btn.active').data('tab');
-			
-			// Validar tipus de canvi
-			if (!changeTypeFull) {
-				this.showMessage('error', untilWP.i18n.select_change_type);
+	/**
+	 * Programar un canvi
+	 */
+	scheduleChange: function() {
+		// Obtenir valors
+		var postId = $('#until-wp-post-id').val();
+		var changeTypeFull = $('#until-wp-change-type').val();
+		var activeTab = $('.until-wp-tab-btn.active').data('tab');
+		
+		// Validar tipus de canvi
+		if (!changeTypeFull) {
+			this.showMessage('error', untilWP.i18n.select_change_type);
+			return;
+		}
+		
+		// Si és una funció personalitzada, obtenir el nom de la funció
+		if (changeTypeFull.indexOf('custom_function:') === 0) {
+			var customFunctionName = $('#until-wp-custom-function-name').val().trim();
+			if (!customFunctionName) {
+				this.showMessage('error', untilWP.i18n.enter_function_name || 'Si us plau, introdueix el nom de la funció.');
 				return;
 			}
-			
-			// Preparar dades
-			var data = {
-				action: 'until_wp_schedule_change',
-				nonce: untilWP.nonce,
-				post_id: postId,
-				change_type: changeTypeFull,
-				time_type: activeTab
-			};
+			// Reemplaçar "custom" amb el nom real de la funció
+			changeTypeFull = 'custom_function:' + customFunctionName;
+		}
+		
+		// Preparar dades
+		var data = {
+			action: 'until_wp_schedule_change',
+			nonce: untilWP.nonce,
+			post_id: postId,
+			change_type: changeTypeFull,
+			time_type: activeTab
+		};
 			
 			// Afegir dades del temps segons la tab activa
 			if (activeTab === 'relative') {
@@ -262,15 +283,17 @@
 			$('.until-wp-scheduled-list').show();
 		},
 		
-		/**
-		 * Netejar el formulari
-		 */
-		resetForm: function() {
-			$('#until-wp-change-type').val('');
-			$('#until-wp-relative-amount').val(1);
-			$('#until-wp-relative-unit').val('hours');
-			$('#until-wp-absolute-datetime').val('');
-		},
+	/**
+	 * Netejar el formulari
+	 */
+	resetForm: function() {
+		$('#until-wp-change-type').val('');
+		$('#until-wp-custom-function-name').val('');
+		$('#until-wp-custom-function-field').hide();
+		$('#until-wp-relative-amount').val(1);
+		$('#until-wp-relative-unit').val('hours');
+		$('#until-wp-absolute-datetime').val('');
+	},
 		
 		/**
 		 * Mostrar un missatge

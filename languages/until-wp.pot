@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Until WP plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Until WP 1.0.0\n"
+"Project-Id-Version: Until WP 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/socenpauriba/until-wp/issues\n"
 "POT-Creation-Date: 2026-01-05 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -314,5 +314,100 @@ msgid "Canvi executat"
 msgstr ""
 
 msgid "+ %d més"
+msgstr ""
+
+#: includes/class-until-wp-metabox.php, includes/class-until-wp-admin.php
+msgid "%s segon"
+msgid_plural "%s segons"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s minut"
+msgid_plural "%s minuts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s h %2$s min"
+msgstr ""
+
+msgid "%s hora"
+msgid_plural "%s hores"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%1$s dies %2$s h"
+msgstr ""
+
+msgid "%s dia"
+msgid_plural "%s dies"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-until-wp-metabox.php
+msgid "Avançat"
+msgstr ""
+
+msgid "Executar funció personalitzada"
+msgstr ""
+
+msgid "Nom de la funció:"
+msgstr ""
+
+msgid "Exemple: processar_post_automaticament"
+msgstr ""
+
+msgid "La funció rebrà el post_id com a paràmetre."
+msgstr ""
+
+msgid "Executar %s()"
+msgstr ""
+
+#: includes/class-until-wp-scheduler.php
+msgid "La funció \"%s\" no existeix."
+msgstr ""
+
+msgid "El post no existeix."
+msgstr ""
+
+msgid "Error al calcular el temps relatiu."
+msgstr ""
+
+msgid "No s'ha proporcionat una data vàlida."
+msgstr ""
+
+msgid "Tipus de temps invàlid."
+msgstr ""
+
+msgid "Error al processar el temps programat."
+msgstr ""
+
+msgid "Error al guardar el canvi a la base de dades."
+msgstr ""
+
+msgid "Executar %2$s() per \"%1$s\""
+msgstr ""
+
+#: includes/class-until-wp-admin.php
+msgid "Funció personalitzada"
+msgstr ""
+
+msgid "Les taules de la base de dades no existeixen."
+msgstr ""
+
+msgid "Crear Taules"
+msgstr ""
+
+msgid "Les taules de la base de dades s'han recreat correctament."
+msgstr ""
+
+#: includes/class-until-wp-history.php
+msgid "Funció: %s"
+msgstr ""
+
+msgid "%s() executat"
+msgstr ""
+
+#: assets/js/admin-scripts.js
+msgid "Si us plau, introdueix el nom de la funció."
 msgstr ""
 

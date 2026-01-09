@@ -1,6 +1,6 @@
 # Until WP - Programar Canvis en Posts de WordPress
 
-**Version:** 1.0.0
+**Version:** 1.1.0  
 **Requereix:** WordPress 5.0+  
 **Requereix PHP:** 7.4+  
 **Llicència:** GPL v2 or later
@@ -13,6 +13,7 @@ Until WP és un plugin de WordPress que et permet programar canvis automàtics e
 
 - **Programar canvis d'estat**: Canvia posts de publicat a esborrany, de pendent a publicat, etc.
 - **Fixar/Desfixar entrades**: Programa quan una entrada s'ha de fixar o desfixar
+- **Funcions personalitzades**: Executa les teves pròpies funcions al moment programat
 - **Programació flexible**: Defineix canvis de forma relativa (d'aquí a 2 dies) o absoluta (data específica)
 - **Interfície integrada**: Meta box a l'editor de posts per una gestió fàcil
 - **Pàgina d'administració**: Visualitza tots els canvis programats i l'historial
@@ -59,6 +60,29 @@ Al dashboard de WordPress, trobaràs un widget que mostra:
 - Els propers 5 canvis programats
 - Els últims 5 canvis executats
 
+### Funcions Personalitzades
+
+A més dels canvis predefinits, pots executar les teves pròpies funcions:
+
+1. Defineix una funció al `functions.php` del teu tema
+2. Al meta box, selecciona "Executar funció personalitzada"
+3. Introdueix el nom de la funció (ex: `processar_post_automaticament`)
+4. Programa quan s'ha d'executar
+
+**La funció rebrà el `post_id` com a paràmetre automàticament.**
+
+**Exemple:**
+```php
+function processar_post_automaticament( $post_id ) {
+    // La teva lògica aquí
+    $post = get_post( $post_id );
+    // ... fer alguna cosa amb el post
+    return true; // o false si hi ha error
+}
+```
+
+📖 **Documentació completa**: Consulta [docs/CUSTOM_FUNCTIONS.md](docs/CUSTOM_FUNCTIONS.md) per exemples detallats i bones pràctiques.
+
 ## Compatibilitat
 
 - **WordPress**: 5.0 o superior
@@ -99,6 +123,15 @@ El plugin proporciona hooks per a desenvolupadors:
 do_action( 'until_wp_change_executed', $change, $old_value );
 ```
 
+## Documentació
+
+### Documentació Addicional
+
+- 📖 **[Funcions Personalitzades](docs/CUSTOM_FUNCTIONS.md)** - Guia completa per utilitzar funcions personalitzades
+- 📋 **[CHANGELOG.md](CHANGELOG.md)** - Historial complet de canvis
+
+Tota la documentació addicional es troba a la carpeta [`docs/`](docs/).
+
 ## Contribuir
 
 Les contribucions són benvingudes! Si vols contribuir:
@@ -113,6 +146,10 @@ Per informar d'errors o sol·licitar funcionalitats:
 - GitHub Issues: https://github.com/socenpauriba/until-wp/issues
 
 ## Changelog
+
+### 1.1.0 (2026-01-05)
+- **Nova funcionalitat**: Execució de funcions personalitzades programades
+- Reorganització de documentació a carpeta `docs/`
 
 ### 1.0.0 (2026-01-05)
 - Llançament inicial

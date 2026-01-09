@@ -82,6 +82,11 @@ class Until_WP_Scheduler {
 				$success = $this->change_sticky_status( $change->post_id, $change->new_value );
 				break;
 				
+			case 'custom_function':
+				$old_value = 'none';
+				$success = $this->execute_custom_function( $change->post_id, $change->new_value );
+				break;
+				
 			default:
 				// Tipus de canvi desconegut
 				$this->database->cancel_scheduled_change( $change->id );
@@ -154,6 +159,59 @@ class Until_WP_Scheduler {
 	}
 	
 	/**
+	 * Executar una funció personalitzada
+	 *
+	 * @param int $post_id ID del post
+	 * @param string $function_name Nom de la funció a executar
+	 * @return bool True si s'ha executat correctament, false si no
+	 */
+	private function execute_custom_function( $post_id, $function_name ) {
+		// Verificar que la funció existeix
+		if ( ! function_exists( $function_name ) ) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Until WP - La funció "' . $function_name . '" no existeix.' );
+			}
+			return false;
+		}
+		
+		// Aplicar filtre per permetre modificar els paràmetres
+		$params = apply_filters( 'until_wp_custom_function_params', array( $post_id ), $function_name, $post_id );
+		
+		try {
+			// Executar la funció amb gestió d'errors
+			$result = call_user_func_array( $function_name, $params );
+			
+			// Debug logging
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Until WP - Funció "' . $function_name . '" executada per post ' . $post_id . '. Resultat: ' . print_r( $result, true ) );
+			}
+			
+			// Considerar èxit si no retorna WP_Error o false explícit
+			if ( is_wp_error( $result ) ) {
+				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+					error_log( 'Until WP - Error en funció "' . $function_name . '": ' . $result->get_error_message() );
+				}
+				return false;
+			}
+			
+			// Si retorna false explícitament, considerar error
+			if ( $result === false ) {
+				return false;
+			}
+			
+			// Qualsevol altre valor (true, números, strings, etc.) és èxit
+			return true;
+			
+		} catch ( Exception $e ) {
+			// Capturar qualsevol excepció
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( 'Until WP - Excepció en funció "' . $function_name . '": ' . $e->getMessage() );
+			}
+			return false;
+		}
+	}
+	
+	/**
 	 * Afegir una notificació per un canvi executat
 	 *
 	 * @param object $change Objecte del canvi executat
@@ -200,9 +258,16 @@ class Until_WP_Scheduler {
 		}
 		
 		// Validar el tipus de canvi
-		$valid_change_types = array( 'post_status', 'sticky' );
+		$valid_change_types = array( 'post_status', 'sticky', 'custom_function' );
 		if ( ! in_array( $change_type, $valid_change_types ) ) {
 			return array( 'error' => __( 'Tipus de canvi invàlid.', 'until-wp' ) );
+		}
+		
+		// Si és una funció personalitzada, validar que existeix
+		if ( $change_type === 'custom_function' ) {
+			if ( ! function_exists( $new_value ) ) {
+				return array( 'error' => sprintf( __( 'La funció "%s" no existeix.', 'until-wp' ), $new_value ) );
+			}
 		}
 		
 		// Calcular el temps programat
@@ -365,6 +430,14 @@ class Until_WP_Scheduler {
 					__( '%1$s "%2$s"', 'until-wp' ),
 					ucfirst( $action ),
 					$post_title
+				);
+				
+			case 'custom_function':
+				return sprintf(
+					/* translators: 1: Post title, 2: Function name */
+					__( 'Executar %2$s() per "%1$s"', 'until-wp' ),
+					$post_title,
+					$change->new_value
 				);
 				
 			default:

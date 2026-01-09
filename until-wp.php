@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Until WP
  * Plugin URI: https://github.com/socenpauriba/until-wp
- * Description: Programa canvis automàtics en posts de WordPress (estat, entrades fixades, etc.)
- * Version: 1.0.0
+ * Description: Programa canvis automàtics en posts de WordPress (estat, entrades fixades, funcions personalitzades, etc.)
+ * Version: 1.1.0
  * Author: Nuvol.cat
  * Author URI: https://nuvol.cat
  * Text Domain: until-wp
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Definir constants del plugin
-define( 'UNTIL_WP_VERSION', '1.0.0' );
+define( 'UNTIL_WP_VERSION', '1.1.0' );
 define( 'UNTIL_WP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UNTIL_WP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'UNTIL_WP_PLUGIN_FILE', __FILE__ );

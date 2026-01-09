@@ -137,6 +137,9 @@ class Until_WP_History {
 			case 'sticky':
 				return ( $change->new_value === 'yes' ) ? __( 'Fixar', 'until-wp' ) : __( 'Desfixar', 'until-wp' );
 				
+			case 'custom_function':
+				return sprintf( __( 'Funció: %s', 'until-wp' ), $change->new_value );
+				
 			default:
 				return __( 'Canvi', 'until-wp' );
 		}
@@ -284,6 +287,9 @@ class Until_WP_History {
 			case 'sticky':
 				return ( $change->new_value === 'yes' ) ? __( 'Fixar entrada', 'until-wp' ) : __( 'Desfixar entrada', 'until-wp' );
 				
+			case 'custom_function':
+				return sprintf( __( 'Executar %s()', 'until-wp' ), $change->new_value );
+				
 			default:
 				return __( 'Canvi desconegut', 'until-wp' );
 		}
@@ -305,6 +311,9 @@ class Until_WP_History {
 				
 			case 'sticky':
 				return ( $item->new_value === 'yes' ) ? __( 'Fixat', 'until-wp' ) : __( 'Desfixat', 'until-wp' );
+				
+			case 'custom_function':
+				return sprintf( __( '%s() executat', 'until-wp' ), $item->new_value );
 				
 			default:
 				return __( 'Canvi executat', 'until-wp' );
