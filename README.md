@@ -145,23 +145,6 @@ Les contribucions són benvingudes! Si vols contribuir:
 Per informar d'errors o sol·licitar funcionalitats:
 - GitHub Issues: https://github.com/socenpauriba/until-wp/issues
 
-## Changelog
-
-### 1.1.0 (2026-01-05)
-- **Nova funcionalitat**: Execució de funcions personalitzades programades
-- Reorganització de documentació a carpeta `docs/`
-
-### 1.0.0 (2026-01-05)
-- Llançament inicial
-- Suport per canvis d'estat de posts
-- Suport per fixar/desfixar entrades
-- Programació relativa i absoluta
-- Meta box a l'editor
-- Pàgina d'administració amb historial
-- Sistema de notificacions
-- Widget al dashboard
-- Internacionalització completa
-
 ## Llicència
 
 Aquest plugin està llicenciat sota GPL v2 or later.
